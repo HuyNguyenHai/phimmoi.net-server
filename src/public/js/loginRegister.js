@@ -1,25 +1,25 @@
 function showHideLoginForm() {
-    $('.login-btn').on('click', function (e) {
+    $('.login-btn').off('click').on('click', function (e) {
         e.preventDefault();
         $('.pop-up-login').show();
         $('.pop-up-login').find('.login-form').show();
         $('.pop-up-login').find('.register-form').hide();
     });
 
-    $('.open-login').on('click', function (e) {
+    $('.open-login').off('click').on('click', function (e) {
         e.preventDefault();
         $('.pop-up-login').show();
         $('.pop-up-login').find('.login-form').show();
         $('.pop-up-login').find('.register-form').hide();
     });
 
-    $('.pop-up-login .close-login-modal').on('click', function (e) {
+    $('.pop-up-login .close-login-modal').off('click').on('click', function (e) {
         e.preventDefault();
         $('.pop-up-login').hide();
         $('.register-form').find('.notifications .fail').hide();
     });
 
-    $('.pop-up-login .pop-up-bg').on('click', function (e) {
+    $('.pop-up-login .pop-up-bg').off('click').on('click', function (e) {
         e.preventDefault();
         $('.pop-up-login').hide();
         $('.register-form').find('.notifications .fail').hide();
@@ -27,13 +27,13 @@ function showHideLoginForm() {
 }
 
 function loginRegisterchange() {
-    $('#open-login').on('click', function (e) {
+    $('#open-login').off('click').on('click', function (e) {
         e.preventDefault();
         $('.pop-up-login').find('.section-title').text('Đăng nhập');
         $('.pop-up-login').find('.register-form').hide();
         $('.pop-up-login').find('.login-form').show();
     });
-    $('#open-register').on('click', function (e) {
+    $('#open-register').off('click').on('click', function (e) {
         e.preventDefault();
         $('.pop-up-login').find('.section-title').text('Đăng ký');
         $('.pop-up-login').find('.register-form').show();
@@ -115,7 +115,7 @@ function signUp() {
 }
 
 function logout() {
-    $('.logout-btn').on('click', function(e) {
+    $('.logout-btn').off('click').on('click', function(e) {
         e.preventDefault();
         $.get('http://localhost:3000/logout', function(data) {
             $('.logout-btn').hide();

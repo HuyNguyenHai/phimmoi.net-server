@@ -16,7 +16,7 @@ function carousel() {
     let step = itemsInOneStep*itemWidth + 10;
 
     let counter = 0;
-    $('.top-movie-list').find('.prev-btn').on('click', function (e) {
+    $('.top-movie-list').find('.prev-btn').off('click').on('click', function (e) {
         e.preventDefault();
         if (counter === 0) {
             return false;
@@ -28,7 +28,7 @@ function carousel() {
             }, 800);
         }
     })
-    $('.top-movie-list').find('.next-btn').on('click', function (e) {
+    $('.top-movie-list').find('.next-btn').off('click').on('click', function (e) {
         e.preventDefault();
         if (counter === maxCount) {
             counter = 0;
