@@ -1,4 +1,5 @@
 import passport from "passport";
+import jwt from "jsonwebtoken";
 
 let getLogout = (req, res) => {
   req.logout();
@@ -7,7 +8,6 @@ let getLogout = (req, res) => {
 
 let checkLoggedIn = (req, res, next) => {
   if(!req.isAuthenticated()){
-    console.log('logged out!!');
     return res.send({message:'not logged in!!!', done: false});
   }
   next();
@@ -15,7 +15,6 @@ let checkLoggedIn = (req, res, next) => {
 
 let checkLoggedOut = (req, res, next) => {
   if(req.isAuthenticated()){
-    console.log('logged in!!');
     return res.send({message:'logged in!!!', done: false});;
   }
   next();
@@ -30,19 +29,23 @@ let getLoginStatus = (req, res, next) => {
 }
 
 let passportAuth = (req, res, next) => {
-  console.log(req.body);
   passport.authenticate("local", (err, user, info) => {
     if (err) { return console.log(err); }
     if (!user) { 
-      return res.send({message:'login fail!!!', done: false});
+      return res.json({success: false, message: 'Tài khoản hoặc mật khẩu không đúng!!!', data: ''});
     }
     req.logIn(user, function(err) {
-      if (err) { return console.log(err);}
-      return res.send({
-        message: 'login success!!!', 
-        user: user,
-        done: true
+      if (err) { res.json({success: false, message: 'Tài khoản hoặc mật khẩu không đúng!!!', data: ''});}
+      let payload = {
+        id: user._id,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        avatar: user.avatar
+      }
+      let token = jwt.sign(payload, 'secret', {
+        expiresIn: 1440
       });
+      return res.send({success: true, message: 'Đăng nhập thành công!!!', data: token});
     });
   })(req, res, next);
 }

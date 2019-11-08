@@ -117,13 +117,16 @@ function showHideCommentButton() {
 
 function sendAddCommentRequest(e) {
     e.preventDefault();
+    console.log('da dang comment');
     let commentContent = $('.pop-up-window').find('form #comment-content').val();
     let movieId = $('.pop-up-window').find('form #movie-id').val();
+    let userId = $('.pop-up-window').find('form #user-id').val();
     $('.pop-up-window').find('form #comment-content').val('');
     $('.pop-up-window').find('form .comment-btns').hide();
     $.post("http://localhost:3000/comment/add-new", {
         commentContent: commentContent,
-        movieId: movieId
+        movieId: movieId,
+        userId: userId
     }, function (data) {
         let commentListElem = $('.comment-list');
         let avatar = $('#comment-posible').find('.avatar img').attr('src');

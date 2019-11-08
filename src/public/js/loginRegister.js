@@ -1,10 +1,10 @@
 function showHideLoginForm() {
-    $('.login-btn').off('click').on('click', function (e) {
-        e.preventDefault();
-        $('.pop-up-login').show();
-        $('.pop-up-login').find('.login-form').show();
-        $('.pop-up-login').find('.register-form').hide();
-    });
+    // $('.login-btn').off('click').on('click', function (e) {
+    //     e.preventDefault();
+    //     $('.pop-up-login').show();
+    //     $('.pop-up-login').find('.login-form').show();
+    //     $('.pop-up-login').find('.register-form').hide();
+    // });
 
     $('.open-login').off('click').on('click', function (e) {
         e.preventDefault();
@@ -123,7 +123,6 @@ function logout() {
             $('#comment-posible').hide();
             $('#comment-imposible').show();
             $('.pop-up-content .comments .comment-list').css('height', '85%');
-            alert(data.message);
         });
     })
 }
